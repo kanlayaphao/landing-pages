@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 1400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#182536"/>
+      <stop offset="0.48" stop-color="#0b121b"/>
+      <stop offset="1" stop-color="#020305"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="72%" cy="38%" r="62%">
+      <stop offset="0" stop-color="#6f8c75" stop-opacity=".48"/>
+      <stop offset=".42" stop-color="#304c42" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="12"/></filter>
+    <pattern id="grid" width="115" height="115" patternUnits="userSpaceOnUse" patternTransform="rotate(24)">
+      <path d="M0 0H115M0 0V115" stroke="#b8d5b0" stroke-opacity=".18" stroke-width="3"/>
+      <circle cx="18" cy="30" r="4" fill="#d6f4b8" fill-opacity=".6"/>
+      <circle cx="78" cy="82" r="3" fill="#d6f4b8" fill-opacity=".42"/>
+    </pattern>
+  </defs>
+  <rect width="2400" height="1400" fill="url(#sky)"/>
+  <rect width="2400" height="1400" fill="url(#glow)"/>
+  <g filter="url(#blur)" opacity=".7" fill="none" stroke="#b7d6b0" stroke-linecap="round">
+    <path d="M-100 1120C380 880 650 1070 980 780S1520 310 2500 460" stroke-width="90" stroke-opacity=".10"/>
+    <path d="M-100 1250C420 1000 700 1160 1040 830S1630 430 2500 540" stroke-width="40" stroke-opacity=".22"/>
+    <path d="M250 0C430 320 720 400 1080 440S1690 720 2160 1400" stroke-width="55" stroke-opacity=".13"/>
+  </g>
+  <path d="M-100 1080C430 820 660 1060 990 760S1580 300 2500 450" fill="none" stroke="#d0efb8" stroke-opacity=".32" stroke-width="7"/>
+  <path d="M80 1210C500 1010 760 1160 1050 850S1660 450 2400 540" fill="none" stroke="#9fc5a0" stroke-opacity=".22" stroke-width="4"/>
+  <path d="M0 0L2400 0L2400 1400L0 1400Z" fill="url(#grid)" opacity=".7"/>
+  <g fill="#d8f7bb">
+    <circle cx="1720" cy="420" r="9" opacity=".8"/><circle cx="1850" cy="500" r="6" opacity=".7"/><circle cx="1530" cy="620" r="5" opacity=".62"/><circle cx="2010" cy="700" r="7" opacity=".72"/><circle cx="1240" cy="810" r="5" opacity=".56"/>
+  </g>
+  <rect width="2400" height="1400" fill="#000" opacity=".2"/>
+</svg>
