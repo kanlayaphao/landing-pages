@@ -13,6 +13,7 @@ interface BannerProps {
   customSubheading?: string;
   isLightMode?: boolean;
   onToggleTheme?: () => void;
+  scrollY?: number;
 }
 
 export const Banner: React.FC<BannerProps> = ({
@@ -25,6 +26,7 @@ export const Banner: React.FC<BannerProps> = ({
   customSubheading = "",
   isLightMode = false,
   onToggleTheme = () => {},
+  scrollY = 0,
 }) => {
   return (
     <div
@@ -36,7 +38,8 @@ export const Banner: React.FC<BannerProps> = ({
         fontFamily: "'DM Sans', 'Prompt', sans-serif",
         backgroundImage: `url(${imageUrls.hero})`,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: `center calc(50% + ${Math.min(scrollY * 0.18, 180)}px)`,
+        backgroundAttachment: 'fixed',
       }}
     >
       {/* Background image overlay keeps the text readable in both themes. */}

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { toPng } from 'html-to-image';
 import { Banner } from './components/Banner';
 import { StatsSection } from './components/StatsSection';
@@ -21,6 +21,21 @@ export default function App() {
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [notification, setNotification] = useState<string | null>(null);
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    let frame = 0;
+    const handleScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => setScrollY(window.scrollY));
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const showToast = (msg: string) => {
     setNotification(msg);
@@ -93,6 +108,7 @@ export default function App() {
         customHeading2={heading2}
         customSubheading={subheading}
         isLightMode={isLightMode}
+        scrollY={scrollY}
         onToggleTheme={toggleTheme}
         onNavClick={handleNavClick}
         onButtonClick={handleButtonClick}
