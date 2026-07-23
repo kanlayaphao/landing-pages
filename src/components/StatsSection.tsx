@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { imageUrls } from '../config/imageUrls';
 
 interface StatItem {
   id: number;
@@ -48,21 +49,21 @@ export const StatsSection: React.FC<StatsSectionProps> = ({ isLightMode = false 
       tag: "การแสดงผล",
       time: "",
       title: "ปรับปรุงประสิทธิภาพการใช้งานและการแสดงผล",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+      image: imageUrls.cards[0]
     },
     {
       id: 2,
       tag: "มลพิษ PM 2.5",
       time: "",
       title: "แสดงผลข้อมูล PM 2.5 ร่วมกับข้อมูลอาคารชุด",
-      image: "https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=80"
+      image: imageUrls.cards[1]
     },
     {
       id: 3,
       tag: "สัญชาติผู้ถือครอง",
       time: "",
       title: "แสดงผลข้อมูลสัดส่วนสัญชาติผู้ถือครองห้องชุด",
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80"
+      image: imageUrls.cards[2]
     }
   ];
 

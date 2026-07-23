@@ -1,6 +1,7 @@
 import React from 'react';
 import { AncLogo } from './AncLogo';
 import { Lightbulb, Moon } from 'lucide-react';
+import { imageUrls } from '../config/imageUrls';
 
 interface BannerProps {
   onNavClick?: (link: string) => void;
@@ -33,7 +34,7 @@ export const Banner: React.FC<BannerProps> = ({
       }`}
       style={{
         fontFamily: "'DM Sans', 'Prompt', sans-serif",
-        backgroundImage: "url('./condomaps-background.svg')",
+        backgroundImage: `url(${imageUrls.hero})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
