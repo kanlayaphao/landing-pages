@@ -31,8 +31,22 @@ export const Banner: React.FC<BannerProps> = ({
       className={`relative w-full min-h-screen font-sans flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-16 transition-colors duration-300 selection:bg-neutral-800 selection:text-white overflow-hidden ${
         isLightMode ? 'bg-white text-black' : 'bg-black text-white'
       }`}
-      style={{ fontFamily: "'DM Sans', 'Prompt', sans-serif" }}
+      style={{
+        fontFamily: "'DM Sans', 'Prompt', sans-serif",
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2400&q=85')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
+      {/* Background image overlay keeps the text readable in both themes. */}
+      <div
+        className={`absolute inset-0 pointer-events-none ${
+          isLightMode ? 'bg-white/70' : 'bg-black/60'
+        }`}
+        aria-hidden="true"
+      />
+
       {/* Optional Debug Layout Alignment Grid */}
       {showGridOverlay && (
         <div className={`absolute inset-0 pointer-events-none border grid grid-cols-12 gap-4 p-6 sm:p-10 md:p-12 lg:p-16 opacity-20 z-50 ${
