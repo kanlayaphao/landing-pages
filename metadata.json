@@ -1,0 +1,6 @@
+{
+  "name": "Condomaps Banner",
+  "description": "ระบบให้บริการสืบค้นอาคารชุด ห้องชุด Condomaps แบนเนอร์สไตล์มินิมอล พร้อมปุ่มสลับโหมดสว่าง-โหมดมืด",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

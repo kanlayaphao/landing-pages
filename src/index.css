@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'DM Sans', 'Prompt', sans-serif;
+}
+
+body, html {
+  font-family: 'DM Sans', 'Prompt', sans-serif;
+}
+
+* {
+  font-family: 'DM Sans', 'Prompt', sans-serif;
+}
