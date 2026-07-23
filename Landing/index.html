@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condomaps - ระบบให้บริการสืบค้นอาคารชุด ห้องชุด</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,300..700&family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'DM Sans', 'Prompt', sans-serif; background-color: #000; color: #fff; }
+        .canvas-bg { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 100vh; object-fit: cover; z-index: -1; pointer-events: none; }
+        .text-shadow-sm { text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8); }
+        .text-shadow-md { text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7); }
+        .text-shadow-lg { text-shadow: 0 4px 16px rgba(0, 0, 0, 0.9); }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+    <canvas id="scroll-animation" class="canvas-bg"></canvas>
+    <div class="relative w-full min-h-screen flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-16">
+        <header class="relative z-10 w-full flex items-center justify-between py-2 text-shadow-md">
+            <div class="cursor-pointer flex items-center transition-opacity hover:opacity-80 text-xl font-bold tracking-widest text-white">CONDOMAPS</div>
+            <div class="flex items-center space-x-4 sm:space-x-8 md:space-x-10">
+                <nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-sm md:text-base font-medium tracking-wide text-white">
+                    <button class="hover:opacity-75 transition-opacity text-shadow-sm">หน้าหลัก</button>
+                    <button class="hover:opacity-75 transition-opacity text-shadow-sm">แหล่งข้อมูล</button>
+                    <button class="hover:opacity-75 transition-opacity text-shadow-sm">แผนที่ 3 มิติ</button>
+                </nav>
+                <button class="text-sm sm:text-base font-medium px-5 sm:px-6 py-2.5 rounded-xl transition-colors duration-200 cursor-pointer shadow-sm bg-white text-black hover:bg-neutral-200">เข้าสู่ระบบ</button>
+            </div>
+        </header>
+        <main class="relative z-10 mt-auto pb-2 sm:pb-4 pt-12 flex flex-col justify-end items-start text-left">
+            <div class="max-w-3xl space-y-3 sm:space-y-4">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-[1.18] text-white text-shadow-lg">ระบบให้บริการสืบค้นอาคารชุด <br class="hidden sm:inline" />ห้องชุด Condomaps</h1>
+                <div class="pt-1 sm:pt-2 flex flex-wrap items-center gap-4"><button class="text-sm sm:text-base font-medium px-6 sm:px-7 py-3 rounded-xl transition-all duration-200 cursor-pointer shadow-md bg-white text-black hover:bg-neutral-200">เข้าสู่ระบบ ดูแผนที่ 3 มิติ</button></div>
+            </div>
+        </main>
+    </div>
+    <section class="relative w-full py-12 sm:py-16 md:py-20 px-6 sm:px-10 md:px-12 lg:px-16">
+        <div class="max-w-7xl mx-auto w-full space-y-12 sm:space-y-16">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 lg:gap-16 w-full">
+                <div class="group flex flex-col justify-between space-y-4 w-full"><div class="space-y-2 sm:space-y-3 text-shadow-md"><div class="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-white text-shadow-lg">68+</div><h3 class="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-white">จำนวนผู้เข้าใช้งาน</h3><p class="text-sm sm:text-base leading-relaxed font-medium text-neutral-100">จำนวนสถิติผู้ใช้งานที่เข้าถึงและสืบค้นข้อมูลในระบบ Condomaps</p></div><button class="text-sm sm:text-base font-medium text-white hover:text-neutral-300 text-shadow-md">รายละเอียด →</button></div>
+                <div class="group flex flex-col justify-between space-y-4 w-full"><div class="space-y-2 sm:space-y-3 text-shadow-md"><div class="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-white text-shadow-lg">978+</div><h3 class="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-white">ข้อมูลอาคารชุด</h3><p class="text-sm sm:text-base leading-relaxed font-medium text-neutral-100">ข้อมูลอาคารชุดรวบรวมครบถ้วนสำหรับการสืบค้นและวิเคราะห์ข้อมูลเชิงพื้นที่</p></div><button class="text-sm sm:text-base font-medium text-white hover:text-neutral-300 text-shadow-md">รายละเอียด →</button></div>
+                <div class="group flex flex-col justify-between space-y-4 w-full"><div class="space-y-2 sm:space-y-3 text-shadow-md"><div class="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-white text-shadow-lg">$5.4B</div><h3 class="text-lg sm:text-xl md:text-2xl font-medium tracking-tight text-white">ข้อมูลห้องชุด (ให้บริการบนระบบฯ)</h3><p class="text-sm sm:text-base leading-relaxed font-medium text-neutral-100">ข้อมูลยูนิตห้องชุดพร้อมระบบสืบค้นแผนที่ 3 มิติความละเอียดสูง</p></div><button class="text-sm sm:text-base font-medium text-white hover:text-neutral-300 text-shadow-md">รายละเอียด →</button></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 w-full pt-4">
+                <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg bg-neutral-900/90 text-white border border-neutral-800"><div class="p-6 sm:p-7 space-y-6 relative min-h-[200px]"><div class="absolute top-0 left-0 right-0 h-1 bg-white"></div><span class="font-semibold text-sm sm:text-base">การแสดงผล</span><h4 class="text-xl sm:text-2xl font-semibold tracking-tight leading-snug">ปรับปรุงประสิทธิภาพการใช้งานและการแสดงผล</h4></div><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="การแสดงผล" class="w-full h-48 sm:h-56 lg:h-64 object-cover" /></div>
+                <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg bg-neutral-900/90 text-white border border-neutral-800"><div class="p-6 sm:p-7 space-y-6 relative min-h-[200px]"><div class="absolute top-0 left-0 right-0 h-1 bg-white"></div><span class="font-semibold text-sm sm:text-base">มลพิษ PM 2.5</span><h4 class="text-xl sm:text-2xl font-semibold tracking-tight leading-snug">แสดงผลข้อมูล PM 2.5 ร่วมกับข้อมูลอาคารชุด</h4></div><img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=80" alt="มลพิษ PM 2.5" class="w-full h-48 sm:h-56 lg:h-64 object-cover" /></div>
+                <div class="rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg bg-neutral-900/90 text-white border border-neutral-800"><div class="p-6 sm:p-7 space-y-6 relative min-h-[200px]"><div class="absolute top-0 left-0 right-0 h-1 bg-white"></div><span class="font-semibold text-sm sm:text-base">สัญชาติผู้ถือครอง</span><h4 class="text-xl sm:text-2xl font-semibold tracking-tight leading-snug">แสดงผลข้อมูลสัดส่วนสัญชาติผู้ถือครองห้องชุด</h4></div><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="สัญชาติผู้ถือครอง" class="w-full h-48 sm:h-56 lg:h-64 object-cover" /></div>
+            </div>
+        </div>
+    </section>
+    <section class="relative w-full min-h-screen flex flex-col justify-center p-6 sm:p-10 md:p-12 lg:p-16"><div class="max-w-7xl w-full mx-auto"><div class="w-full lg:w-1/2 max-w-xl"><div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center mb-6 bg-white text-black shadow-lg">⚡</div><h2 class="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-[1.2] text-neutral-900">Power up with smart, clean condomaps, because searching properties should feel as good as it looks.</h2><p class="mt-5 text-sm sm:text-base md:text-lg font-medium leading-relaxed text-neutral-800">ยกระดับการสืบค้นข้อมูลอาคารชุดและห้องชุด 3 มิติ ด้วยระบบบริหารจัดการอสังหาริมทรัพย์อัจฉริยะ</p><button class="mt-8 px-6 py-3 rounded-full text-sm sm:text-base font-medium bg-white text-black shadow-lg hover:bg-neutral-200">Let's see Condomaps</button></div></div></section>
+    <script>
+        const canvas = document.getElementById('scroll-animation');
+        const context = canvas.getContext('2d');
+        const frameCount = 280;
+        const currentFrame = index => `JPG/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+        const images = [];
+        for (let i = 1; i <= frameCount; i++) { const img = new Image(); img.src = currentFrame(i); images.push(img); }
+        images[0].onload = () => { canvas.width = images[0].width; canvas.height = images[0].height; context.drawImage(images[0], 0, 0); };
+        let targetFrame = 0; let currentFrameIndex = 0;
+        window.addEventListener('scroll', () => { const scrollTop = document.documentElement.scrollTop; const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight; if (maxScrollTop > 0) targetFrame = Math.min(frameCount - 1, Math.floor((scrollTop / maxScrollTop) * frameCount)); });
+        function updateFrame() { currentFrameIndex += (targetFrame - currentFrameIndex) * 0.1; const frameToDraw = Math.round(currentFrameIndex); if (images[frameToDraw] && images[frameToDraw].complete) { context.clearRect(0, 0, canvas.width, canvas.height); context.drawImage(images[frameToDraw], 0, 0); } requestAnimationFrame(updateFrame); }
+        requestAnimationFrame(updateFrame);
+    </script>
+</body>
+</html>
