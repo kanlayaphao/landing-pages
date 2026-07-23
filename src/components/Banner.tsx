@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { AncLogo } from './AncLogo';
 import { Lightbulb, Moon } from 'lucide-react';
 import { imageUrls } from '../config/imageUrls';
@@ -28,6 +28,63 @@ export const Banner: React.FC<BannerProps> = ({
   onToggleTheme = () => {},
   scrollY = 0,
 }) => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const framesRef = useRef<HTMLImageElement[]>([]);
+  const drawnFrameRef = useRef(-1);
+  const desiredFrameRef = useRef(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    const frames = Array.from({ length: imageUrls.frameCount }, (_, index) => {
+      const image = new Image();
+      image.crossOrigin = 'anonymous';
+      image.src = imageUrls.frame(index + 1);
+      return image;
+    });
+    framesRef.current = frames;
+
+    const drawFrame = (frameIndex: number) => {
+      const canvas = canvasRef.current;
+      const requestedImage = frames[frameIndex];
+      const image = requestedImage?.naturalWidth ? requestedImage : frames[0];
+      if (!canvas || !image?.complete || !image.naturalWidth || cancelled) return;
+      const context = canvas.getContext('2d');
+      if (!context) return;
+      const width = canvas.clientWidth * window.devicePixelRatio;
+      const height = canvas.clientHeight * window.devicePixelRatio;
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+      }
+      const scale = Math.max(width / image.naturalWidth, height / image.naturalHeight);
+      const drawWidth = image.naturalWidth * scale;
+      const drawHeight = image.naturalHeight * scale;
+      context.clearRect(0, 0, width, height);
+      context.drawImage(image, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);
+      drawnFrameRef.current = frameIndex;
+    };
+
+    const handleLoad = () => drawFrame(desiredFrameRef.current);
+    frames.forEach((image) => image.addEventListener('load', handleLoad));
+    const resizeObserver = new ResizeObserver(() => handleLoad());
+    if (canvasRef.current) resizeObserver.observe(canvasRef.current);
+    return () => {
+      cancelled = true;
+      resizeObserver.disconnect();
+      frames.forEach((image) => image.removeEventListener('load', handleLoad));
+    };
+  }, []);
+
+  useEffect(() => {
+    const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    const frameIndex = Math.min(imageUrls.frameCount - 1, Math.floor((scrollY / maxScroll) * imageUrls.frameCount));
+    desiredFrameRef.current = frameIndex;
+    const image = framesRef.current[frameIndex];
+    if (image?.complete && image.naturalWidth && frameIndex !== drawnFrameRef.current) {
+      image.dispatchEvent(new Event('load'));
+    }
+  }, [scrollY]);
+
   return (
     <div
       ref={bannerRef}
@@ -42,6 +99,7 @@ export const Banner: React.FC<BannerProps> = ({
         backgroundAttachment: 'fixed',
       }}
     >
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 h-full w-full object-cover" aria-hidden="true" />
       {/* Background image overlay keeps the text readable in both themes. */}
       <div
         className={`absolute inset-0 pointer-events-none ${
